@@ -1,48 +1,23 @@
 package org.avs.go;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.avs.controlador.UsuarioController;
-import org.avs.util.Util;
 
-public class Go extends ActionBarActivity {
-
+public class Cadastro extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_go);
-
-
-
-        //criar base local
-        UsuarioController u = new UsuarioController(this);
-        //consulta usuario
-        if(u.searchUsuario()==null) {
-            //se usuario nao existe
-            if (Util.getInstance().isConnected(getApplicationContext())) {
-                //continua com  registro direciona para tela de cadastro
-                Intent i = new Intent(this, Cadastro.class);
-                startActivity(i);
-                this.finish();
-            } else {
-                //exibe msg para completar o registro depoi
-            }
-        }else {
-            //se nao dereciona para tela de feed.
-        }
+        setContentView(R.layout.activity_cadastro);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_go, menu);
+        getMenuInflater().inflate(R.menu.menu_cadastro, menu);
         return true;
     }
 
