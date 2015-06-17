@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.avs.controlador.UsuarioController;
 import org.avs.util.Util;
 
 public class Go extends ActionBarActivity {
@@ -16,10 +17,20 @@ public class Go extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go);
 
-        if(Util.getInstance().isConnected(getApplicationContext())){
 
-        }else{
 
+        //criar base local
+        UsuarioController u = new UsuarioController(this);
+        //consulta usuario
+        if(u.searchUsuario()==null) {
+            //se usuario nao existe
+            if (Util.getInstance().isConnected(getApplicationContext())) {
+                //continua com  registro
+            } else {
+                //exibe msg para completar o registro depoi
+            }
+        }else {
+            //se nao dereciona para tela de feed.
         }
     }
 
