@@ -22,7 +22,7 @@
 
 		// mysql inserting a new row
 		$result = mysql_query("INSERT INTO user(PHONE, NOME, AREA_COD, COUNTRY, IMEI, SERIAL_SIM, STATUS)
-          VALUES('$phone', '$name', '$area_Cod', '$country', '$imei','$serial_sim', 'status')");
+          VALUES('$phone', '$name', '$area_Cod', '$country', '$imei','$serial_sim', '$status')");
 	
 		// check if row inserted or not
 		if ($result) {
