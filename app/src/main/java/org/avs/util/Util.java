@@ -10,8 +10,9 @@ import android.util.Log;
 public class Util {
 
     private Context context;
-
+    private static Util uniqueInstance  = new Util();
     private static final String TAG = "Util";
+
 
     public Util(){
 
@@ -21,7 +22,15 @@ public class Util {
 
     }
 
-    public static boolean isConnected(Context c){
+    public static synchronized Util getInstance(){
+        if(uniqueInstance!=null){
+            uniqueInstance = new Util();
+        }
+
+        return uniqueInstance;
+    }
+
+    public  boolean isConnected(Context c){
         try {
             ConnectivityManager cm = (ConnectivityManager)
                     c.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -31,20 +40,20 @@ public class Util {
                 LogSync += "\nConectado a Internet 3G ";
                 LogToUserTitle += "Conectado a Internet 3G ";
                 //handler.sendEmptyMessage(0);
-                Log.d(TAG, "Status de conex„o 3G: " + cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected());
+                Log.d(TAG,"Status de conex√£o 3G: "+cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected());
                 return true;
             } else if(cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected()){
                 LogSync += "\nConectado a Internet WIFI ";
                 LogToUserTitle += "Conectado a Internet WIFI ";
                 //handler.sendEmptyMessage(0);
-                Log.d(TAG,"Status de conex„o Wifi: "+cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected());
+                Log.d(TAG,"Status de conex√£o Wifi: "+cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected());
                 return true;
             } else {
-                LogSync += "\nN„o possui conex„o com a internet ";
-                LogToUserTitle += "N„o possui conex„o com a internet ";
+                LogSync += "\nN√£o possui conex√£o com a internet ";
+                LogToUserTitle += "N√£o possui conex√£o com a internet ";
                 //handler.sendEmptyMessage(0);
-                Log.e(TAG,"Status de conex„o Wifi: "+cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected());
-                Log.e(TAG,"Status de conex„o 3G: "+cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected());
+                Log.e(TAG,"Status de conex√£o Wifi: "+cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected());
+                Log.e(TAG,"Status de conex√£o 3G: "+cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected());
                 return false;
             }
         } catch (Exception e) {
