@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.avs.controlador.UsuarioController;
+import org.avs.util.Constantes;
+import org.avs.util.CustomToast;
 import org.avs.util.Util;
 
 public class Go extends ActionBarActivity {
@@ -17,8 +19,6 @@ public class Go extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go);
-
-
 
         //criar base local
         UsuarioController u = new UsuarioController(this);
@@ -31,7 +31,8 @@ public class Go extends ActionBarActivity {
                 startActivity(i);
                 this.finish();
             } else {
-                //exibe msg para completar o registro depoi
+                CustomToast ct = new CustomToast();
+                ct.showToast(null,this, CustomToast.TYPE_TOAST_UNDEFINED);
             }
         }else {
             //se nao dereciona para tela de feed.

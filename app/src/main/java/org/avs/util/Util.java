@@ -62,4 +62,23 @@ public class Util {
         }
     }
 
+//    public static View toastCustom(Activity activity, String msg) {
+//
+//        LayoutInflater inflater = activity.getLayoutInflater();
+//
+//        View layout = inflater.inflate(R.layout.custom_toast,
+//                (ViewGroup) activity.findViewById(R.id.custom_toast_layout_id));
+//
+//        // set a dummy image
+//        ImageView image = (ImageView) layout.findViewById(R.id.image);
+//        image.setImageResource(R.drawable.ic_launcher);
+//
+//        // set a message
+//        TextView text = (TextView) layout.findViewById(R.id.text);
+//        text.setText(msg);
+//
+//        return layout;
+//
+//    }
+
 }
