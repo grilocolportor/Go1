@@ -25,7 +25,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,29 +36,52 @@
         android:id="@+id/lblphone"
         android:layout_below="@+id/txtnome"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp" />
+        android:layout_marginTop="164dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/txtArea_cod"
         android:layout_below="@+id/lblphone"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/lblnome"
-        android:layout_toStartOf="@+id/lblnome" />
+        android:layout_toStartOf="@+id/lblnome"
+        android:textAlignment="center"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/txtPhone"
         android:layout_below="@+id/lblphone"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/lblnome"
-        android:layout_alignStart="@+id/lblnome" />
+        android:layout_alignStart="@+id/lblnome"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/lblCountry"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/lblCountryCod"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/lblnome"
+        android:layout_alignEnd="@+id/lblnome" />
+
 </RelativeLayout>

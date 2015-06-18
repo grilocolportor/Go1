@@ -67,6 +67,7 @@ public class UsuarioController {
             usuario.setStatus(cursor.getString(cursor.getColumnIndex("status")));
         }
 
+        cursor.close();
         return usuario;
     }
 }

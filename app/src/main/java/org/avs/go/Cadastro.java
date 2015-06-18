@@ -4,14 +4,43 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.avs.Async.CountryCodAsync;
+import org.avs.usuario.Usuario;
+import org.avs.util.Util;
 
 
 public class Cadastro extends ActionBarActivity {
+
+    private EditText txtName;
+    private EditText txtArea_cod;
+    private EditText txtPhone;
+    private TextView lblCountry;
+    private TextView lblCountryCod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+
+        Usuario usuario = new Usuario();
+        usuario = Util.getInstance().phoneInformation(this);
+
+        //buscar o codigo do pais do usuario
+        CountryCodAsync countryCodAsync = new CountryCodAsync(this, usuario);
+        countryCodAsync.execute();
+        this.lblCountryCod.setText(countryCodAsync.getJsonAnswerCountryCod());
+        this.lblCountry.setText(countryCodAsync.getJsonAnswerCountry());
+
+
+        this.txtName = (EditText) findViewById(R.id.txtnome);
+        this.txtArea_cod = (EditText) findViewById(R.id.txtArea_cod);
+        this.txtPhone = (EditText) findViewById(R.id.txtPhone);
+
+        this.txtPhone.setText(usuario.getPhone());
+
     }
 
     @Override

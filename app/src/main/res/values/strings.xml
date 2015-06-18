@@ -4,4 +4,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_cadastro">Avançar</string>
+
+    <!-- mesagens -->
+    <string name="msg_alert_empty_name_field">É necessário informar um nome</string>
+    <string name="msg_alert_empty_Areacod_field">É necessário informar o código de área</string>
+    <string name="msg_alert_empty_phone_field">É necessário informar um número de telefone</string>
+
+    <string name="msg_error_no_connection">Sem conexão. Tente mais tarde</string>
 </resources>

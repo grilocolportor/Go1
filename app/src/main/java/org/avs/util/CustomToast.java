@@ -17,7 +17,7 @@ public class CustomToast{
 	public static final int TYPE_TOAST_ALERT = 2;
 	public static final int TYPE_TOAST_ERRO = 3;
 
-	public void showToast(View view, Activity activity, int type){
+	public void showToast(String text, Activity activity, int type){
 		Context context=activity.getApplicationContext();
 		LayoutInflater inflater=activity.getLayoutInflater();
 
@@ -38,6 +38,7 @@ public class CustomToast{
 		customtoast.setView(customToastroot);
 		customtoast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,0, 0);
 		customtoast.setDuration(Toast.LENGTH_LONG);
+		customtoast.setText(text);
 		customtoast.show();
 	}
 }

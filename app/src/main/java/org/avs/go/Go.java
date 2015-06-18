@@ -32,7 +32,8 @@ public class Go extends ActionBarActivity {
                 this.finish();
             } else {
                 CustomToast ct = new CustomToast();
-                ct.showToast(null,this, CustomToast.TYPE_TOAST_UNDEFINED);
+                ct.showToast("Sem conexao. Tente mais tarde",this, CustomToast.TYPE_TOAST_ERRO);
+
             }
         }else {
             //se nao dereciona para tela de feed.
