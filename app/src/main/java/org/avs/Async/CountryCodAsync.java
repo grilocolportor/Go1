@@ -11,6 +11,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.avs.json.JSONParser;
 import org.avs.usuario.Usuario;
 import org.avs.util.Constantes;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +44,8 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
     @Override
     protected String doInBackground(Object... params) {
 
+
+        int success;
         // Building Parameters
         List<NameValuePair> param= new ArrayList<NameValuePair>();
         param.add(new BasicNameValuePair("country", usuario.getCountry()));
@@ -51,13 +54,19 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
                 "POST", param);
 
         // check log cat fro response
-        Log.d("Create Response", json.toString());
+        //Log.d("Create Response", json.toString());
 
         try{
+            success = json.getInt("success");
+            if(success==1) {
 
-            this.setJsonAnswerCountry(json.getString("country"));
-            this.setJsonAnswerCountryCod(json.getString("cod"));
+                JSONArray countryObj = json.getJSONArray("retorno");
 
+                JSONObject country = countryObj.getJSONObject(0);
+
+                this.setJsonAnswerCountry(country.getString("country"));
+                this.setJsonAnswerCountryCod(country.getString("cod"));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

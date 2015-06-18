@@ -1,5 +1,7 @@
 <?php
 
+$response = array();
+
 	if(isset($_POST['country'])){
 	
 		$country = $_POST['country'];
@@ -16,11 +18,17 @@
 				// check for empty result
 				if (mysql_num_rows($result) > 0) {
 					
-					$response["country"] = $result["short_name"];
-					$response["cod"] = $result["calling_cod"];
+					$result = mysql_fetch_array($result);
+					
+					$retorno = array();
+					$retorno["country"] = $result["short_name"];
+					$retorno["cod"] = $result["calling_cod"];
 					//$response["phone"] = $phone ;
-					//$response["status"] = $result['status'];
-					//$response["success"] = 1;
+					
+					$response["success"] = 1;
+					$response["country"] = array();
+					array_push($response["country"], $retorno);
+					
 				}
 				echo json_encode($response);
 		}
