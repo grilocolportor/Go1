@@ -51,7 +51,7 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
         param.add(new BasicNameValuePair("country", usuario.getCountry()));
 
         JSONObject json = jsonParser.makeHttpRequest(Constantes.URL_SERVIDOR+ Constantes.GET_COUNTRY_COD,
-                "POST", param);
+                "GET", param);
 
         // check log cat fro response
         //Log.d("Create Response", json.toString());
