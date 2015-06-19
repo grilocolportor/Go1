@@ -53,7 +53,14 @@ public class Cadastro extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        super.onCreateOptionsMenu(menu);
+        MenuItem m1 = menu.add(R.id.mnuAvancar);
+        //m1.setIcon(R.drawable.ic_action_forward);
+        //m1.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
         getMenuInflater().inflate(R.menu.menu_cadastro, menu);
+
+
         return true;
     }
 

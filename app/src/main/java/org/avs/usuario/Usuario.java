@@ -12,6 +12,7 @@ public class Usuario {
     private String imei;
     private String serialSim;
     private String status;
+    private String photo;
 
     public int getId() {
         return id;
@@ -78,5 +79,14 @@ public class Usuario {
 
     public void setAreaCod(String areaCod) {
         this.areaCod = areaCod;
+    }
+
+    public String getPhoto() {
+
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

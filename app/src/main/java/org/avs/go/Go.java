@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.avs.controlador.UsuarioController;
+import org.avs.db.DB;
 import org.avs.util.Constantes;
 import org.avs.util.CustomToast;
 import org.avs.util.Util;

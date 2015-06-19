@@ -19,7 +19,8 @@ public class DB extends SQLiteOpenHelper {
                                                     " COUNTRY VARCHAR(3) NOT NULL," +
                                                     " IMEI VARCHAR(50) NOT NULL," +
                                                     " SERIAL_SIM VARCHAR(50) NOT NULL," +
-                                                    " STATUS INT NOT NULL)";
+                                                    " STATUS INT NOT NULL, " +
+                                                    " PHOTO VARCHAR(50) NOT NULL)";
 
 
     public DB(Context context) {
