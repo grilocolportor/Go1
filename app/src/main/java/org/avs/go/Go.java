@@ -35,9 +35,13 @@ public class Go extends ActionBarActivity {
                 ct.showToast("Sem conexao. Tente mais tarde",this, CustomToast.TYPE_TOAST_ERRO);
 
             }
-        }else {
+
+        }
+        else {
             //se nao dereciona para tela de feed.
         }
+
+        u.closeDB();
     }
 
 

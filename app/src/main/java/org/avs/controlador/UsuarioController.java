@@ -70,4 +70,8 @@ public class UsuarioController {
         cursor.close();
         return usuario;
     }
+
+    public void closeDB(){
+        db.close();
+    }
 }

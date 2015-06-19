@@ -1,10 +1,9 @@
 <?php
 
-$response = array();
-
 	if(isset($_POST['country'])){
 	
 		$country = $_POST['country'];
+		var_dump($country);
 	
 		// include db connect class
 		require_once __DIR__ . '/db_connect.php';
@@ -12,9 +11,10 @@ $response = array();
 		// connecting to db
 		$db = new DB_CONNECT();
 
+		
 		// mysql query a new row
-		$result = mysql_query("select * from country_t where iso2 = $country");
-		/if (!empty($result)) {
+		$result = mysql_query("select * from country_t where iso2 = '$country'");
+		if (!empty($result)) {
 				// check for empty result
 				if (mysql_num_rows($result) > 0) {
 					
@@ -22,15 +22,18 @@ $response = array();
 					
 					$retorno = array();
 					$retorno["country"] = $result["short_name"];
-					$retorno["cod"] = $result["calling_cod"];
+					$retorno["cod"] = $result["calling_code"];
 					//$response["phone"] = $phone ;
 					
 					$response["success"] = 1;
-					$response["country"] = array();
-					array_push($response["country"], $retorno);
+					//$response["country"] = array();
+					//array_push($response["country"], $response);
 					
 				}
+				echo json_encode($retorno);
 				echo json_encode($response);
+				
+				echo 'não retornou vazio';
 		}
 	
 		// check if row inserted or not
@@ -58,5 +61,8 @@ $response = array();
 		// echoing JSON response
 		echo json_encode($response);
 	}
+	
+	
+	
 
 ?>

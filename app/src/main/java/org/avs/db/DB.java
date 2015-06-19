@@ -37,4 +37,8 @@ public class DB extends SQLiteOpenHelper {
         onCreate(bd);
     }
 
+    public void closeDB(SQLiteDatabase bd){
+        bd.close();
+    }
+
 }

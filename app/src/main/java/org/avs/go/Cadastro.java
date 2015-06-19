@@ -36,10 +36,10 @@ public class Cadastro extends ActionBarActivity {
 
         this.lblCountry = (TextView) findViewById(R.id.lblCountry);
         this.lblCountryCod = (TextView) findViewById(R.id.lblCountryCod);
-
+/*
         runOnUiThread(new Runnable() {
             @Override
-            public void run() {
+            public void run() {*/
                 //buscar o codigo do pais do usuario
 
                 CountryCodAsync countryCodAsync = new CountryCodAsync(context, usuario);
@@ -53,8 +53,8 @@ public class Cadastro extends ActionBarActivity {
                     lblCountryCod.setText("");
                     lblCountry.setText("");
                 }
-            }
-        });
+            //}
+        /**//*});*/
 
 
 

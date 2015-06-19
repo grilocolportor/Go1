@@ -50,22 +50,24 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
         List<NameValuePair> param= new ArrayList<NameValuePair>();
         param.add(new BasicNameValuePair("country", usuario.getCountry()));
 
-        JSONObject json = jsonParser.makeHttpRequest(Constantes.URL_SERVIDOR+ Constantes.GET_COUNTRY_COD,
+        JSONObject json = jsonParser.makeHttpRequest(Constantes.URL_SERVIDOR + Constantes.GET_COUNTRY_COD,
                 "GET", param);
 
         // check log cat fro response
         //Log.d("Create Response", json.toString());
 
         try{
-            success = json.getInt("success");
-            if(success==1) {
+            if(json!=null) {
+                success = json.getInt("success");
+                if (success == 1) {
 
-                JSONArray countryObj = json.getJSONArray("retorno");
+                    JSONArray countryObj = json.getJSONArray("retorno");
 
-                JSONObject country = countryObj.getJSONObject(0);
+                    JSONObject country = countryObj.getJSONObject(0);
 
-                this.setJsonAnswerCountry(country.getString("country"));
-                this.setJsonAnswerCountryCod(country.getString("cod"));
+                    this.setJsonAnswerCountry(country.getString("country"));
+                    this.setJsonAnswerCountryCod(country.getString("cod"));
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
