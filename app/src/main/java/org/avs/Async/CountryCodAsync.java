@@ -1,13 +1,17 @@
 package org.avs.Async;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.avs.go.Cadastro;
+import org.avs.go.R;
 import org.avs.json.JSONParser;
 import org.avs.usuario.Usuario;
 import org.avs.util.Constantes;
@@ -28,12 +32,17 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
     private String jsonAnswerCountry;
     private String jsonAnswerCountryCod;
     private Usuario usuario;
+    private Activity activity;
+
+    TextView lblCountry;
+    TextView lblCountryCod;
 
     JSONParser jsonParser = new JSONParser();
 
-    public CountryCodAsync(Context context, Usuario usuario){
+    public CountryCodAsync(Context context, Usuario usuario, Activity activity){
         this.context = context;
         this.usuario = usuario;
+        this.activity = activity;
     }
 
     @Override
@@ -51,7 +60,7 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
         param.add(new BasicNameValuePair("country", usuario.getCountry()));
 
         JSONObject json = jsonParser.makeHttpRequest(Constantes.URL_SERVIDOR + Constantes.GET_COUNTRY_COD,
-                "GET", param);
+                "POST", param);
 
         // check log cat fro response
         //Log.d("Create Response", json.toString());
@@ -61,12 +70,12 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
                 success = json.getInt("success");
                 if (success == 1) {
 
-                    JSONArray countryObj = json.getJSONArray("retorno");
+                   // JSONArray countryObj = json.getJSONArray("response");
 
-                    JSONObject country = countryObj.getJSONObject(0);
+                    //JSONObject country = countryObj.getJSONObject(0);
 
-                    this.setJsonAnswerCountry(country.getString("country"));
-                    this.setJsonAnswerCountryCod(country.getString("cod"));
+                    this.setJsonAnswerCountry(json.getString("country"));
+                    this.setJsonAnswerCountryCod(json.getString("cod"));
                 }
             }
         } catch (JSONException e) {
@@ -79,6 +88,10 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
     @Override
     protected void onPostExecute(String result){
         progress.dismiss();
+        this.lblCountry = (TextView) this.activity.findViewById(R.id.lblCountry);
+        this.lblCountryCod = (TextView) this.activity.findViewById(R.id.lblCountryCod);
+        this.lblCountry.setText(getJsonAnswerCountry());
+        this.lblCountryCod.setText(getJsonAnswerCountryCod());
         //if(process){
         //    Intent it = new Intent("START_SERVICE");
         //    it.putExtra("flag", 1);

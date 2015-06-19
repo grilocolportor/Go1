@@ -70,9 +70,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/lblCountry"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2" />
+        android:layout_centerVertical="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +78,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/lblCountryCod"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/lblCountry"
         android:layout_alignRight="@+id/lblnome"
         android:layout_alignEnd="@+id/lblnome" />
 

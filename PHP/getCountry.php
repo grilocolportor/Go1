@@ -3,7 +3,7 @@
 	if(isset($_POST['country'])){
 	
 		$country = $_POST['country'];
-		var_dump($country);
+		//var_dump($country);
 	
 		// include db connect class
 		require_once __DIR__ . '/db_connect.php';
@@ -20,20 +20,20 @@
 					
 					$result = mysql_fetch_array($result);
 					
-					$retorno = array();
-					$retorno["country"] = $result["short_name"];
-					$retorno["cod"] = $result["calling_code"];
+					$response = array();
+					$response["country"] = $result["short_name"];
+					$response["cod"] = $result["calling_code"];
 					//$response["phone"] = $phone ;
 					
-					$response["success"] = 1;
+					//$response["success"] = 1;
 					//$response["country"] = array();
-					//array_push($response["country"], $response);
+					array_push($response["country"], $response);
 					
 				}
-				echo json_encode($retorno);
-				echo json_encode($response);
+				//echo json_encode($retorno);
+				//echo json_encode($response);
 				
-				echo 'não retornou vazio';
+				//echo 'não retornou vazio';
 		}
 	
 		// check if row inserted or not
