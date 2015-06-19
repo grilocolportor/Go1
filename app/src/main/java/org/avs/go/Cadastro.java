@@ -33,7 +33,7 @@ public class Cadastro extends ActionBarActivity {
         usuario = new Usuario();
         usuario = Util.getInstance().phoneInformation(this);
 
-        this.txtName = (EditText) findViewById(R.id.txtnome);
+        this.txtName = (EditText) findViewById(R.id.txtName);
         this.txtArea_cod = (EditText) findViewById(R.id.txtArea_cod);
         this.txtPhone = (EditText) findViewById(R.id.txtPhone);
 
