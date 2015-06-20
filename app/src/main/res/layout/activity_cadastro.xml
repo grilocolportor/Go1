@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.avs.go.Cadastro">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp" >
+    <TextView
+        android:id="@+id/lblnome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:textSize="50sp"
+        android:gravity="left"
+        android:layout_x="6dp"
+        android:layout_y="8dp" />
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_x="10dp"
+        android:layout_y="66dp" />
+        <LinearLayout android:layout_width="88dp">
+    <TextView
+        android:id="@+id/lblCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="left"
+        android:layout_x="52dp"
+        android:layout_y="120dp" />
+    <TextView
+        android:id="@+id/lblCountryCod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_x="15dp"
+        android:layout_y="120dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/lblPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="N&#250;mero"
+        android:textSize="50sp"
+        android:gravity="left"
+        android:layout_x="15dp"
+        android:layout_y="158dp" />
+        <LinearLayout>
+            <EditText
+                android:id="@+id/txtArea_cod"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:phoneNumber="true"
+                android:layout_x="16dp"
+                android:layout_y="223dp" />
+            <EditText
+                android:id="@+id/txtPhone"
+                android:layout_width="246dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:phoneNumber="true"
+                android:layout_x="63dp"
+                android:layout_y="223dp" />
+        </LinearLayout>
+    </TableLayout>
+</RelativeLayout>
