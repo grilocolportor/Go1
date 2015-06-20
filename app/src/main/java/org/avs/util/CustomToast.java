@@ -33,12 +33,14 @@ public class CustomToast{
 			customToastroot = inflater.inflate(R.layout.blue_toast, null);
 		}
 
+		TextView txt = (TextView) customToastroot.findViewById(R.id.txtAlertMsg);
+		txt.setText(text);
+
 		Toast customtoast=new Toast(context);
 
 		customtoast.setView(customToastroot);
-		customtoast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,0, 0);
+		customtoast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
 		customtoast.setDuration(Toast.LENGTH_LONG);
-		customtoast.setText(text);
 		customtoast.show();
 	}
 }

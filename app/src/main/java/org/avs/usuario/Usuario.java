@@ -1,9 +1,14 @@
 package org.avs.usuario;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import static android.content.ComponentName.readFromParcel;
+
 /**
  * Created by Administrador on 17/Jun/2015.
  */
-public class Usuario {
+public class Usuario implements Parcelable {
 
     private int id;
     private String phone;
@@ -89,4 +94,55 @@ public class Usuario {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    //necessario para passar entre intent
+    public Usuario(){
+
+    }
+
+    public Usuario(Parcel in) {
+        readFromParcel(in);
+    }
+    // Metodo auxilirares
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeLong(id);
+        out.writeString(nome);
+        out.writeString(phone);
+        out.writeString(areaCod);
+        out.writeString(country);
+        out.writeString(imei);
+        out.writeString(serialSim);
+        out.writeString(status);
+        out.writeString(photo);
+    }
+
+    private void readFromParcel(Parcel in) {
+
+        id = in.readInt();
+        nome = in.readString();
+        phone = in.readString();
+        areaCod = in.readString();;
+        country = in.readString();;
+        imei = in.readString();;
+        serialSim = in.readString();;
+        status = in.readString();;
+        photo = in.readString();;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Usuario createFromParcel(Parcel in) {
+            return new Usuario(in);
+        }
+
+        public Usuario[] newArray(int size) {
+            return new Usuario[size];
+        }
+    };
 }
