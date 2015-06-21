@@ -18,6 +18,8 @@ public class Usuario implements Parcelable {
     private String serialSim;
     private String status;
     private String photo;
+    private String born;
+    private String countryCod;
 
     public int getId() {
         return id;
@@ -94,6 +96,23 @@ public class Usuario implements Parcelable {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+    public String getBorn() {
+
+        return photo;
+    }
+
+    public void setBorn(String born) {
+        this.born = born;
+    }
+
+    public String getCountryCod() {
+
+        return countryCod;
+    }
+
+    public void setCountryCod(String countryCod) {
+        this.countryCod = countryCod;
+    }
 
     //necessario para passar entre intent
     public Usuario(){
@@ -103,7 +122,7 @@ public class Usuario implements Parcelable {
     public Usuario(Parcel in) {
         readFromParcel(in);
     }
-    // Metodo auxilirares
+
     @Override
     public int describeContents() {
         return 0;
@@ -120,6 +139,8 @@ public class Usuario implements Parcelable {
         out.writeString(serialSim);
         out.writeString(status);
         out.writeString(photo);
+        out.writeString(born);
+        out.writeString(countryCod);
     }
 
     private void readFromParcel(Parcel in) {
@@ -127,12 +148,14 @@ public class Usuario implements Parcelable {
         id = in.readInt();
         nome = in.readString();
         phone = in.readString();
-        areaCod = in.readString();;
-        country = in.readString();;
-        imei = in.readString();;
-        serialSim = in.readString();;
-        status = in.readString();;
-        photo = in.readString();;
+        areaCod = in.readString();
+        country = in.readString();
+        imei = in.readString();
+        serialSim = in.readString();
+        status = in.readString();
+        photo = in.readString();
+        born = in.readString();
+        countryCod =in.readString();
     }
 
     @SuppressWarnings("unchecked")

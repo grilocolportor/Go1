@@ -29,6 +29,8 @@ public class UsuarioController {
         value.put("serialSim", usuario.getSerialSim());
         value.put("status", usuario.getStatus());
         value.put("photo", usuario.getPhoto());
+        value.put("born", usuario.getBorn());
+        value.put("countryCod", usuario.getCountryCod());
         db.insert("usuario", null, value);
 
     }
@@ -43,6 +45,8 @@ public class UsuarioController {
         value.put("serialSim", usuario.getSerialSim());
         value.put("status", usuario.getStatus());
         value.put("photo", usuario.getPhoto());
+        value.put("born", usuario.getBorn());
+        value.put("countryCod", usuario.getCountryCod());
         db.update("usuario", value, "_id = ?", new String[]{"" + usuario.getId()});
 
     }
@@ -54,7 +58,7 @@ public class UsuarioController {
 
     public Usuario searchUsuario(){
         Usuario usuario = null;
-        String[] colunas = new String[]{"_id", "phone", "nome", "area_Cod", "country", "imei", "serial_Sim", "status", "photo"};
+        String[] colunas = new String[]{"_id", "phone", "nome", "area_Cod", "country", "imei", "serial_Sim", "status", "photo", "born", "country_Cod"};
         Cursor cursor = db.query("usuario", colunas, null, null, null, null, null);
 
         if(cursor.getCount()>0){
@@ -67,7 +71,10 @@ public class UsuarioController {
             usuario.setImei(cursor.getString(cursor.getColumnIndex("imei")));
             usuario.setSerialSim(cursor.getString(cursor.getColumnIndex("serial_Sim")));
             usuario.setStatus(cursor.getString(cursor.getColumnIndex("status")));
-            usuario.setStatus(cursor.getString(cursor.getColumnIndex("photo")));
+            usuario.setPhoto(cursor.getString(cursor.getColumnIndex("photo")));
+            usuario.setBorn(cursor.getString(cursor.getColumnIndex("born")));
+            usuario.setCountryCod(cursor.getString(cursor.getColumnIndex("country_Cod")));
+
         }
 
         cursor.close();

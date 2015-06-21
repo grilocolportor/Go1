@@ -41,14 +41,9 @@ public class Cadastro extends ActionBarActivity {
 
         this.txtPhone.setText(usuario.getPhone());
 
-        //this.lblCountry = (TextView) findViewById(R.id.lblCountry);
-        //this.lblCountryCod = (TextView) findViewById(R.id.lblCountryCod);
-
-
-                //buscar o codigo do pais do usuario
-
-                CountryCodAsync countryCodAsync = new CountryCodAsync(context, usuario, this );
-                countryCodAsync.execute();
+        //buscar o codigo do pais do usuario
+        CountryCodAsync countryCodAsync = new CountryCodAsync(context, usuario, this );
+        countryCodAsync.execute();
 
     }
 

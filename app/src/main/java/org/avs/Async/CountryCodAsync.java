@@ -92,6 +92,8 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
         this.lblCountryCod = (TextView) this.activity.findViewById(R.id.lblCountryCod);
         this.lblCountry.setText(getJsonAnswerCountry());
         this.lblCountryCod.setText(getJsonAnswerCountryCod());
+
+        usuario.setCountryCod(getJsonAnswerCountryCod());
         //if(process){
         //    Intent it = new Intent("START_SERVICE");
         //    it.putExtra("flag", 1);

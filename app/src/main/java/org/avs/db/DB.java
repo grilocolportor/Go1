@@ -21,7 +21,8 @@ public class DB extends SQLiteOpenHelper {
                                                     " SERIAL_SIM VARCHAR(50) NOT NULL," +
                                                     " STATUS INT NOT NULL, " +
                                                     " PHOTO VARCHAR(50) NOT NULL, " +
-                                                    " BORN VARCHAR(10) NOT NULL)";
+                                                    " BORN VARCHAR(10) NOT NULL, " +
+                                                    " COUNTRY_COD VARCHAR(4) NOT NULL)";
 
 
     public DB(Context context) {
