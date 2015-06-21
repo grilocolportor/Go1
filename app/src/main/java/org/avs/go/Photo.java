@@ -20,6 +20,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import org.avs.usuario.Usuario;
+import org.avs.util.Constantes;
+import org.avs.util.Util;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,10 +44,24 @@ public class Photo extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
+        usuario = new Usuario();
+
         Bundle extras = getIntent().getExtras();
-        usuario = (Usuario) extras.getParcelable("usuario");
+        usuario.setCountryCod(extras.getString("countryCod"));
+        usuario.setCountry(extras.getString("country"));
+        usuario.setNome(extras.getString("nome"));
+        usuario.setPhone(extras.getString("phone"));
+        usuario.setAreaCod(extras.getString("areaCod"));
+        usuario.setSerialSim(extras.getString("serialSim"));
+        usuario.setImei(extras.getString("imei"));
+
+        //usuario = (Usuario) extras.getParcelable("usuario");
+
 
         ivImage = (ImageView) findViewById(R.id.ivImage);
+
+        Util.getInstance().createFolder(Constantes.FOLDER_GO);
+        Util.getInstance().createFolder(Constantes.FOLDER_MEDIA);
 
     }
 
@@ -83,6 +99,9 @@ public class Photo extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        Util.getInstance().createFolder(Constantes.FOLDER_IMAGE);
+
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CAMERA) {
                 File f = new File(Environment.getExternalStorageDirectory()
@@ -102,18 +121,24 @@ public class Photo extends ActionBarActivity {
                     bm = BitmapFactory.decodeFile(f.getAbsolutePath(),
                             btmapOptions);
 
-                    bm = Bitmap.createScaledBitmap(bm, 70, 70, true);
+                    bm = Bitmap.createScaledBitmap(bm, 200, 200, true);
 
 
                     OutputStream fOut = null;
 
-                    String path1 = android.os.Environment
-                            .getExternalStorageDirectory()
-                            + File.separator
-                            + "Go" + File.separator + "media" + File.separator + "image";
+                    String path1 = Constantes.FOLDER_IMAGE;
 
 
-                    File file = new File(path1, "perfil.jpg" );
+                    /*cria a pasta go e a pasta profile no armazenamento interno*/
+                   // File file = Util.getInstance().createFolder(Constantes.FOLDER_GO, Constantes.FOLDER_PIC_PROFILE, this);
+
+                /*Salva a imagem do profile na pasta profile*/
+                  //  usuario.setPhoto(file.getPath());
+                  //  Util.getInstance().saveFile(file, null);
+
+                    File file = new File(path1, usuario.getCountryCod()+usuario.getAreaCod()+usuario.getPhone() + ".bmp" );
+
+                    usuario.setPhoto(file.getCanonicalPath());
 
                     fOut = new FileOutputStream(file);
                     bm.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
@@ -142,14 +167,28 @@ public class Photo extends ActionBarActivity {
                     e.printStackTrace();
                 }
             } else if (requestCode == SELECT_FILE) {
-                Uri selectedImageUri = data.getData();
 
-                String tempPath = getPath(selectedImageUri, Photo.this);
-                Bitmap bm;
-                BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
-                bm = BitmapFactory.decodeFile(tempPath, btmapOptions);
-                ivImage.setImageBitmap(bm);
-                bitmap=bm;
+                try {
+                    Uri selectedImageUri = data.getData();
+
+                    String tempPath = getPath(selectedImageUri, Photo.this);
+
+                    File fileSrc = new File(tempPath);
+                    File fileDst = new File(Environment.getExternalStorageDirectory() + Constantes.FOLDER_IMAGE + File.separator + usuario.getCountryCod()+usuario.getAreaCod()+usuario.getPhone() + ".bmp");
+
+                    Util.getInstance().copyFile(fileSrc, fileDst);
+
+                    usuario.setPhoto(fileDst.getCanonicalPath());
+
+                    Bitmap bm;
+                    BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
+                    bm = BitmapFactory.decodeFile(usuario.getPhoto(), btmapOptions);
+                    ivImage.setImageBitmap(bm);
+                    bitmap=bm;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -186,6 +225,9 @@ public class Photo extends ActionBarActivity {
                     matrix.postScale(-1, 1);
                     break;
                 case ExifInterface.ORIENTATION_ROTATE_270:
+                    matrix.setRotate(-90);
+                    break;
+                case 0:
                     matrix.setRotate(-90);
                     break;
                 default:
@@ -246,6 +288,8 @@ public class Photo extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case  R.id.mnuAvancar:
+
+                Util.getInstance().uploadFile(usuario);
 
               //  Intent intent = new Intent(Pic.this, Termos.class);
                 /**pega a image padrao do ImageView**/

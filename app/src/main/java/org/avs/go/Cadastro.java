@@ -96,15 +96,21 @@ public class Cadastro extends ActionBarActivity {
 //				listUser = getUser.getListUser();
 //				if(listUser.isEmpty()){
 
-                    usuario.setAreaCod(this.txtArea_cod.toString());
-                    usuario.setPhone(this.txtPhone.toString());
-                    usuario.setNome(this.txtName.toString());
+                    usuario.setAreaCod(this.txtArea_cod.getText().toString());
+                    usuario.setPhone(this.txtPhone.getText().toString());
+                    usuario.setNome(this.txtName.getText().toString());
 
 
                     Intent intent = new Intent(this, Photo.class);
                     //intent.putExtra("areaCode", txtAreaCod.getText().toString());
                     //intent.putExtra("phoneNumber", txtPhoneNumber.getText().toString());
-                    intent.putExtra("usuario", usuario);
+                    intent.putExtra("imei", usuario.getImei());
+                    intent.putExtra("serialSim", usuario.getSerialSim());
+                    intent.putExtra("country", usuario.getCountry());
+                    intent.putExtra("areaCod", usuario.getAreaCod());
+                    intent.putExtra("phone", usuario.getPhone());
+                    intent.putExtra("nome", usuario.getNome());
+                    intent.putExtra("countryCod", usuario.getCountryCod());
                     startActivity(intent);
 //				}else{
 //					Intent intent = new Intent(Cadastro.this, MainActivity.class);

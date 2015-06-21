@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp" >
-
+        android:padding="10dp"
+        android:weightSum="10" >
 
 
         <ImageView
             android:id="@+id/ivImage"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:src="@drawable/ic_action_user" />
 
 
