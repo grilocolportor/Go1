@@ -126,7 +126,7 @@ public class Photo extends ActionBarActivity {
 
                     OutputStream fOut = null;
 
-                    String path1 = Constantes.FOLDER_IMAGE;
+                    String path1 =Environment.getExternalStorageDirectory() + Constantes.FOLDER_IMAGE;
 
 
                     /*cria a pasta go e a pasta profile no armazenamento interno*/
