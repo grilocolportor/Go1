@@ -87,7 +87,7 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
 
     @Override
     protected void onPostExecute(String result){
-        progress.dismiss();
+
         this.lblCountry = (TextView) this.activity.findViewById(R.id.lblCountry);
         this.lblCountryCod = (TextView) this.activity.findViewById(R.id.lblCountryCod);
         this.lblCountry.setText(getJsonAnswerCountry());
@@ -101,7 +101,7 @@ public class CountryCodAsync extends AsyncTask<Object, Object, String> {
         //}
         //Cadastro.getUser(jsonAnswer);
         //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-
+        progress.dismiss();
     }
     public String getJsonAnswerCountry() {
         return jsonAnswerCountry;
