@@ -1,6 +1,7 @@
 package org.avs.go;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import org.avs.Async.UsuarioAsync;
+import org.avs.json.UsuarioJson;
 import org.avs.usuario.Usuario;
 import org.avs.util.Constantes;
 import org.avs.util.Util;
@@ -27,6 +30,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Photo extends ActionBarActivity {
@@ -38,11 +43,14 @@ public class Photo extends ActionBarActivity {
     private Bitmap bitmap;
     private File mainFile;
     private Usuario usuario;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
+
+        context = this;
 
         usuario = new Usuario();
 
@@ -289,7 +297,19 @@ public class Photo extends ActionBarActivity {
         switch (item.getItemId()) {
             case  R.id.mnuAvancar:
 
-                Util.getInstance().uploadFile(usuario);
+                List<Usuario> ul = new ArrayList<Usuario>();
+                String bornStr = Util.getInstance().getDataToString("dd/MM/yyyy");
+                usuario.setBorn(bornStr);
+                usuario.setStatus("0");
+                ul.add(usuario);
+
+                UsuarioJson uj = new UsuarioJson();
+                String usuarioJ = uj.toJSon(ul);
+
+                //buscar o codigo do pais do usuario
+                UsuarioAsync usuarioAsync = new UsuarioAsync(context, usuarioJ, this );
+                usuarioAsync.execute();
+                //Util.getInstance().uploadFile(usuario);
 
               //  Intent intent = new Intent(Pic.this, Termos.class);
                 /**pega a image padrao do ImageView**/

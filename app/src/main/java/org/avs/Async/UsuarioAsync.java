@@ -5,7 +5,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.avs.json.JSONParser;
 import org.avs.usuario.Usuario;
+import org.avs.util.Constantes;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pessoal on 22/06/2015.
@@ -15,12 +25,14 @@ public class UsuarioAsync extends AsyncTask<Object, Object, String> {
     private ProgressDialog progress;
 
     private Context context;
-    private Usuario usuario;
+    private String  usuarioStr;
     private Activity activity;
 
-    public UsuarioAsync(Context context, Usuario usuario, Activity activity){
+    JSONParser jsonParser = new JSONParser();
+
+    public UsuarioAsync(Context context, String usuarioStr, Activity activity){
         this.context = context;
-        this.usuario = usuario;
+        this.usuarioStr = usuarioStr;
         this.activity = activity;
     }
 
@@ -31,6 +43,12 @@ public class UsuarioAsync extends AsyncTask<Object, Object, String> {
 
     @Override
     protected String doInBackground(Object... params) {
+
+        List<NameValuePair> param= new ArrayList<NameValuePair>();
+        param.add(new BasicNameValuePair("usuario", usuarioStr));
+
+        JSONObject json = jsonParser.makeHttpRequest(Constantes.URL_SERVIDOR + Constantes.TAG_NEW_USUARIO,
+                "POST", param);
 
 
 

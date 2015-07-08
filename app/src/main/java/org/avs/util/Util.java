@@ -21,6 +21,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Administrador on 16/Jun/2015.
@@ -46,6 +49,24 @@ public class Util {
         }
 
         return uniqueInstance;
+    }
+
+    public String getDataToString(String formato){
+        SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
+        // OU
+       // SimpleDateFormat dateFormat_hora = new SimpleDateFormat("HH:mm:ss");
+
+        Date data = new Date();
+
+        Calendar  cal = Calendar.getInstance();
+        cal.setTime(data);
+        Date data_atual = cal.getTime();
+
+        String data_completa = dateFormat.format(data_atual);
+
+        //String hora_atual = dateFormat_hora.format(data_atual);
+
+        return data_completa;
     }
 
     public  boolean isConnected(Context c){
